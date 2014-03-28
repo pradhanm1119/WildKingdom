@@ -24,7 +24,7 @@
 - (void)viewDidLoad
 {
     
-#pragma mark - connect to JSON file to receive data feed
+# pragma mark - connect to JSON file to receive data feed
     
     [super viewDidLoad];
     
@@ -38,7 +38,7 @@
     NSString* tags = @"=lions+tigers+bears";
     NSString* texts = @"text=lion+tiger+bear";
     
-# pragma mark - Connect to the flickr photo search URL to grab the initial JSON data
+# pragma mark - connect to the flickr photo search URL to grab the initial JSON data
     
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=%@&tags=%@&%@&per_page=20&format=json&nojsoncallback=1",flickrAPIKey,tags,texts]];
     
@@ -60,7 +60,7 @@
          {
              NSString* photoURL = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/%@_%@.jpg",item[@"farm"],item[@"server"],item[@"id"],item[@"secret"]];
              
-#pragma mark - store the URL for the photo in an array for use by the collection view
+# pragma mark - store the URL for the photo in an array for use by the collection view
              
              [arrayOfFlickrPhotos addObject:[NSURL URLWithString:photoURL]];
          }
@@ -72,7 +72,7 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
 
-#pragma mark - return size of dictionary array
+# pragma mark - return size of dictionary array
     
     return [arrayOfFlickrPhotos count];
 }
@@ -80,7 +80,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
-#pragma mark - return the created the image from the URL
+# pragma mark - return the created the image from the URL
     
     MPRCollectionViewCell* cell  = [collectionView dequeueReusableCellWithReuseIdentifier:@"CollectionViewCellID" forIndexPath:indexPath];
     
