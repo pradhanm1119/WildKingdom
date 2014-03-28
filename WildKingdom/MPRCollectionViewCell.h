@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MPRCollectionViewCell.h"
 
 @interface MPRCollectionViewCell : UICollectionViewCell
-
+@property (strong, nonatomic) IBOutlet UIImageView *myImageView;
 @end
