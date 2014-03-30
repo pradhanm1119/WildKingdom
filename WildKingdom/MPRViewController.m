@@ -8,11 +8,12 @@
 
 #import "MPRViewController.h"
 #import "MPRCollectionViewCell.h"
+#import "MPRFlickrSearch.h"
 
-@interface MPRViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface MPRViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UITabBarControllerDelegate, UICollectionViewDelegateFlowLayout>
 {
     NSString *flickrAPIKey;
-    NSMutableArray *arrayOfFlickrPhotos;
+    NSMutableArray *flickrPhotoArray;
     
     IBOutlet UICollectionView *myCollectionView;
     //IBOutlet MPRCollectionViewCell *myCollectionViewCell;
@@ -23,50 +24,16 @@
 
 - (void)viewDidLoad
 {
-    
-# pragma mark - connect to JSON file to receive data feed
+
+#pragma mark - load the app, brother
     
     [super viewDidLoad];
+    self.tabBarController.delegate = self;
+    myCollectionView.delegate = self;
     
-    flickrAPIKey = @"b7be76edbd3b906f271fdc997561a95e";
-    arrayOfFlickrPhotos = [NSMutableArray new];
-    [self flickrPhotoSearch];
-}
-
-- (void)flickrPhotoSearch
-{
-    NSString* tags = @"=lions+tigers+bears";
-    NSString* texts = @"text=lion+tiger+bear";
-    
-# pragma mark - connect to the flickr photo search URL to grab the initial JSON data
-    
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=%@&tags=%@&%@&per_page=20&format=json&nojsoncallback=1",flickrAPIKey,tags,texts]];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError)
-     {
-         
-         NSError *error;
-         
-         NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
-         
-# pragma mark - grab photo data from the dictionary and feed it into an array
-         
-         NSArray* photos = jsonData[@"photos"][@"photo" ];
-         
-         for (NSDictionary* item in photos)
-         {
-             NSString* photoURL = [NSString stringWithFormat:@"http://farm%@.staticflickr.com/%@/%@_%@.jpg",item[@"farm"],item[@"server"],item[@"id"],item[@"secret"]];
-             
-# pragma mark - store the URL for the photo in an array for use by the collection view
-             
-             [arrayOfFlickrPhotos addObject:[NSURL URLWithString:photoURL]];
-         }
-         
-         [myCollectionView reloadData];
-     }];
+    flickrPhotoArray = [NSMutableArray new];
+    MPRFlickrSearch *flickr = [MPRFlickrSearch new];
+    [flickr FlickrPhotoSearch:@"denver+broncos" storeIn:flickrPhotoArray update:myCollectionView];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -74,7 +41,7 @@
 
 # pragma mark - return size of dictionary array
     
-    return [arrayOfFlickrPhotos count];
+    return [flickrPhotoArray count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -84,7 +51,7 @@
     
     MPRCollectionViewCell* cell  = [collectionView dequeueReusableCellWithReuseIdentifier:@"CollectionViewCellID" forIndexPath:indexPath];
     
-    NSData *imageData = [NSData dataWithContentsOfURL:arrayOfFlickrPhotos[indexPath.row]];
+    NSData *imageData = [NSData dataWithContentsOfURL:flickrPhotoArray[indexPath.row]];
     UIImage* image = [UIImage imageWithData:imageData];
     cell.myImageView.image = image;
     

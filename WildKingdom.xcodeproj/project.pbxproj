@@ -22,6 +22,7 @@
 		264E57F518E4AA1300EC6043 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 264E57F318E4AA1300EC6043 /* InfoPlist.strings */; };
 		264E57F718E4AA1300EC6043 /* WildKingdomTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 264E57F618E4AA1300EC6043 /* WildKingdomTests.m */; };
 		264E580218E4BEEE00EC6043 /* MPRCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 264E580118E4BEEE00EC6043 /* MPRCollectionViewCell.m */; };
+		264E580518E765A900EC6043 /* MPRFlickrSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 264E580418E765A900EC6043 /* MPRFlickrSearch.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		264E57F618E4AA1300EC6043 /* WildKingdomTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WildKingdomTests.m; sourceTree = "<group>"; };
 		264E580018E4BEEE00EC6043 /* MPRCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRCollectionViewCell.h; sourceTree = "<group>"; };
 		264E580118E4BEEE00EC6043 /* MPRCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRCollectionViewCell.m; sourceTree = "<group>"; };
+		264E580318E765A900EC6043 /* MPRFlickrSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPRFlickrSearch.h; sourceTree = "<group>"; };
+		264E580418E765A900EC6043 /* MPRFlickrSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPRFlickrSearch.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +125,8 @@
 				264E580118E4BEEE00EC6043 /* MPRCollectionViewCell.m */,
 				264E57E018E4AA1300EC6043 /* MPRViewController.h */,
 				264E57E118E4AA1300EC6043 /* MPRViewController.m */,
+				264E580318E765A900EC6043 /* MPRFlickrSearch.h */,
+				264E580418E765A900EC6043 /* MPRFlickrSearch.m */,
 				264E57E318E4AA1300EC6043 /* Images.xcassets */,
 				264E57D218E4AA1300EC6043 /* Supporting Files */,
 			);
@@ -255,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				264E580518E765A900EC6043 /* MPRFlickrSearch.m in Sources */,
 				264E580218E4BEEE00EC6043 /* MPRCollectionViewCell.m in Sources */,
 				264E57DC18E4AA1300EC6043 /* MPRAppDelegate.m in Sources */,
 				264E57E218E4AA1300EC6043 /* MPRViewController.m in Sources */,
